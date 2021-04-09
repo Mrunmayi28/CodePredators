@@ -57,6 +57,14 @@ def takeCommand():
         return "None"
     return query
     
+    
+def sendmail(to,content):
+    server = sl.SMTP("smtp.gmail.com",587)
+    server.ehlo() #connect server to gemail server
+    server.starttls() #to provide security
+    server.login(e,p)
+    server.sendmail(e,to,content)
+    server.close()
 
 if __name__ == "__main__":
     wishMe()
@@ -75,7 +83,7 @@ if __name__ == "__main__":
         elif 'send email' in query:
             try:
                 speak("What should I say?")
-                content = hear()
+                content = takeCommand()
                 to = "pandeynaman23082000@gmail.com"
                 sendmail(to,content) 
                 speak("Email has been sent successfully!")
