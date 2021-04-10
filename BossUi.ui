@@ -36,7 +36,7 @@
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>../FBG.jpg</pixmap>
+    <pixmap>FBG.jpg</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
@@ -138,7 +138,7 @@ background-color: rgb(88, 232, 227);</string>
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>../Fgif.gif</pixmap>
+    <pixmap>Fgif.gif</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>

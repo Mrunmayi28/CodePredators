@@ -11,7 +11,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 from PyQt5.uic import loadUiType
-from BossGui import Ui_BossUi 
+from BossUi import Ui_BossUi 
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')

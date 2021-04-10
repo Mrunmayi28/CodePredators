@@ -24,7 +24,7 @@ class Ui_BossUi(object):
         self.label.setFont(font)
         self.label.setStyleSheet("")
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("C:\\Users\\Mrunmayi\\CodePredators\\BossGui\\FBG.jpg"))
+        self.label.setPixmap(QtGui.QPixmap("FBG.jpg"))
         self.label.setScaledContents(True)
         self.label.setObjectName("label")
         self.pushButton = QtWidgets.QPushButton(BossUi)
@@ -63,7 +63,7 @@ class Ui_BossUi(object):
         self.label_2.setGeometry(QtCore.QRect(-170, -130, 631, 531))
         self.label_2.setStyleSheet("background:transparent;")
         self.label_2.setText("")
-        self.label_2.setPixmap(QtGui.QPixmap("C:\\Users\\Mrunmayi\\CodePredators\\BossGui\\Fgif.gif"))
+        self.label_2.setPixmap(QtGui.QPixmap("Fgif.gif"))
         self.label_2.setScaledContents(True)
         self.label_2.setObjectName("label_2")
 
