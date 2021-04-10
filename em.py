@@ -1,2 +1,2 @@
-e = "sgirl6593333@gmail.com"
-p = "6593333sgirl"
+e = "mrpatankar28@gmail.com"
+p = "kudopi28,"

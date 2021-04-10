@@ -4,8 +4,14 @@ import datetime
 import wikipedia
 import webbrowser
 import os
-import smtplib as sl
-from em import *
+from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5.QtCore import QTimer, QTime, QDate, Qt
+from PyQt5.QtGui import QMovie
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
+from PyQt5.uic import loadUiType
+from BossGui import Ui_BossUi 
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -24,15 +30,14 @@ def wishMe():          #Wishes
     else:
         speak("Good Evening!")
     
-    speak("I am Boss Please tell me how can I help you")
+    speak("I am Alexa Please tell me how can I help you")
 
-def sendmail(to,content):
-    server = sl.SMTP("smtp.gmail.com",587)
-    server.ehlo() #connect server to gemail server
-    server.starttls() #to provide security
-    server.login(e,p)
-    server.sendmail(e,to,content)
-    server.close()
+class MainThread(QThread):
+    def __init__(self):
+        super(MainThread,self).__init__()
+    
+    def run(self):
+        self.TaskExecution()
 
 def takeCommand():
     #Take Command from the user
@@ -71,18 +76,6 @@ if __name__ == "__main__":
             speak("According to wikipedia")
             print(results)
             speak(results)
-
-        elif 'send email' in query:
-            try:
-                speak("What should I say?")
-                content = hear()
-                to = "pandeynaman23082000@gmail.com"
-                sendmail(to,content) 
-                speak("Email has been sent successfully!")
-            except Exception as e:
-                print(e)
-                speak("Sorry I am not able to send email.")
-
         elif 'open youtube' in query:
             webbrowser.open("youtube.com")
             speak('opening youtube')
@@ -91,13 +84,20 @@ if __name__ == "__main__":
             webbrowser.open("google.com")
             speak('opening google')
         
+        elif 'open stackoverflow' in query:
+            webbrowser.open("stackoverflow.com")        #error (not Opening )
+            speak('opening stackoverflow')
 
         elif 'time' in query:
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
             speak(f" The time is {strTime}")
+
+        elif 'open word' in query:
+            wordPath = "C:\\Program Files\\Microsoft Office\\root\\Office16"
+            os.startfile(wordPath)
         
         elif 'thankyou' in query:
             speak('Welcome')
 
         elif 'what your name' in query:
-            speak('I am Boss')
+            speak('I am Alexa')
