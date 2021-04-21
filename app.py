@@ -6,6 +6,7 @@ import webbrowser
 import os
 import sys
 import smtplib as sl
+import pywhatkit as pw 
 from em import *
 from PyQt5 import QtWidgets, QtCore, QtGui
 from PyQt5.QtCore import QTimer, QTime, QDate, Qt
@@ -47,13 +48,7 @@ def sendmail(to,content):
     server.sendmail(e,to,content)
     server.close()
 
-def sendmail(to,content):
-    server = sl.SMTP("smtp.gmail.com",587)
-    server.ehlo() #connect server to gemail server
-    server.starttls() #to provide security
-    server.login(e,p)
-    server.sendmail(e,to,content)
-    server.close()
+
 
 
 
@@ -103,22 +98,37 @@ class MainThread(QThread):
 
             elif 'send email' in self.query:
                 try:
-                    speak("What should I say?")
-                    content = takeCommand()
-                    to = "mrun282002@gmail.com"
-                    sendmail(to,content) 
-                    speak("Email has been sent successfully!")
+                    if self.query[14:] in emailList:
+                        speak("What should I say?")
+                        content = self.takeCommand()
+                        to = emailList[self.query[14:]]["email"]
+                        sendmail(to,content)
+                        print("Email has been sent successfully!") 
+                        speak("Email has been sent successfully!")
+                    else:
+                        speak(f"Sorry, you don't have {self.query[14:]} in your list")
                 except Exception as e:
                     print(e)
                     speak("Sorry I am not able to send email.")
-
+            elif f"send message" in self.query:
+                try:
+                    if self.query[16:] in emailList: 
+                        speak("What should I say?")
+                        msg = self.takeCommand()
+                        pw.sendwhatmsg(emailList[self.query[16:]]["contact"],msg,datetime.datetime.now().hour,datetime.datetime.now().minute+1.5)
+                        speak("message sent")
+                    else:
+                        speak(f"You don't have {self.query[16:]} in your list")
+                except Exception as e:
+                    print(e)
+                    speak("Sorry, can't send message")
             elif 'open youtube' in self.query:
                 webbrowser.open("youtube.com")
                 speak('opening youtube')
             
             elif 'open google' in self.query:
                 speak("What should I search in google")
-                cm=takecommand().lower()
+                cm=self.takeCommand().lower()
                 webbrowser.open(f"{cm}")
             
 
